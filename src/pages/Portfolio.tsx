@@ -29,7 +29,7 @@ const Portfolio = () => {
         "Parent-friendly payment system",
         "Reduced cash handling risks",
       ],
-      link: null,
+      link: "https://afrigotech.com",
       color: "accent",
     },
     {
@@ -43,7 +43,7 @@ const Portfolio = () => {
         "Multi-language support",
         "Accessible design",
       ],
-      link: null,
+      link: "https://iarise.app",
       color: "primary",
     },
   ];
@@ -77,14 +77,12 @@ const Portfolio = () => {
                       <h2 className="text-3xl font-display font-bold mb-2">{project.title}</h2>
                       <p className="text-sm font-medium text-primary mb-4">{project.category}</p>
                       <p className="text-muted-foreground mb-6">{project.description}</p>
-                      {project.link && (
-                        <a href={project.link} target="_blank" rel="noopener noreferrer">
-                          <Button className="gap-2">
-                            Visit Project
-                            <ExternalLink className="w-4 h-4" />
-                          </Button>
-                        </a>
-                      )}
+                      <a href={project.link} target="_blank" rel="noopener noreferrer">
+                        <Button className="gap-2">
+                          Preview Project
+                          <ExternalLink className="w-4 h-4" />
+                        </Button>
+                      </a>
                     </div>
                     <div className="md:col-span-3">
                       <h3 className="text-xl font-semibold mb-4">Key Outcomes:</h3>
