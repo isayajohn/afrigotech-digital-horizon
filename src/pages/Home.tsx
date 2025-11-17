@@ -2,10 +2,30 @@ import { Link } from "react-router-dom";
 import { CreditCard, School, Smartphone, Globe, Users, TrendingUp, CheckCircle, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import logo from "@/assets/afrigotech-logo.png";
+import { useState, useEffect } from "react";
+import logoWhite from "@/assets/afrigotech-logo-white.png";
 import heroTeam from "@/assets/hero-team.jpg";
+import heroStudent from "@/assets/hero-student.jpg";
+import heroCollaboration from "@/assets/hero-collaboration.jpg";
+import heroWorkspace from "@/assets/hero-workspace.jpg";
 
 const Home = () => {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  
+  const heroImages = [
+    { src: heroTeam, alt: "Afrigotech team working together" },
+    { src: heroStudent, alt: "Students using technology" },
+    { src: heroCollaboration, alt: "Technology collaboration" },
+    { src: heroWorkspace, alt: "Modern workspace" },
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % heroImages.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
   const services = [
     {
       icon: <CreditCard className="w-8 h-8" />,
@@ -40,17 +60,22 @@ const Home = () => {
       {/* Hero Section */}
       <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
-          <img 
-            src={heroTeam} 
-            alt="Afrigotech team working together" 
-            className="w-full h-full object-cover"
-          />
+          {heroImages.map((image, index) => (
+            <img
+              key={index}
+              src={image.src}
+              alt={image.alt}
+              className={`absolute w-full h-full object-cover transition-opacity duration-1000 ${
+                index === currentImageIndex ? "opacity-100" : "opacity-0"
+              }`}
+            />
+          ))}
           <div className="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/80 to-primary/70"></div>
         </div>
         
         <div className="container mx-auto px-4 relative z-10 text-center">
           <div className="animate-fade-in">
-            <img src={logo} alt="Afrigotech" className="h-32 w-auto mx-auto mb-8" />
+            <img src={logoWhite} alt="Afrigotech" className="h-32 w-auto mx-auto mb-8" />
             <h1 className="text-5xl md:text-7xl font-display font-bold text-white mb-6">
               We Empowering Possibilities
             </h1>
@@ -59,7 +84,7 @@ const Home = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/services">
-                <Button size="lg" variant="secondary" className="text-lg px-8 group">
+                <Button size="lg" className="text-lg px-8 group bg-white text-foreground hover:bg-white/90">
                   Explore Services
                   <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
                 </Button>

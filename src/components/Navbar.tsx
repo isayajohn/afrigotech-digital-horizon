@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
-import logo from "@/assets/afrigotech-logo.png";
+import logoBlue from "@/assets/afrigotech-logo.png";
+import logoWhite from "@/assets/afrigotech-logo-white.png";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -39,9 +40,9 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-20">
           <Link to="/" className="flex items-center space-x-3 group">
             <img
-              src={logo}
+              src={isScrolled ? logoBlue : logoWhite}
               alt="Afrigotech Logo"
-              className="h-12 w-auto transition-transform duration-300 group-hover:scale-105"
+              className="h-12 w-auto transition-all duration-300 group-hover:scale-105"
             />
           </Link>
 
@@ -53,8 +54,8 @@ const Navbar = () => {
                 to={link.path}
                 className={`font-medium transition-colors duration-300 relative group ${
                   isActive(link.path)
-                    ? "text-primary"
-                    : "text-foreground hover:text-primary"
+                    ? isScrolled ? "text-primary" : "text-white"
+                    : isScrolled ? "text-foreground hover:text-primary" : "text-white/90 hover:text-white"
                 }`}
               >
                 {link.label}
