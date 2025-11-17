@@ -82,38 +82,32 @@ const Services = () => {
       {/* Services Section */}
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
-          <div className="space-y-16">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
             {services.map((service, index) => (
               <Card
                 key={index}
-                className={`bg-gradient-card border-none shadow-soft hover:shadow-hover transition-all ${
-                  index % 2 === 1 ? "lg:ml-auto lg:mr-0" : ""
-                } max-w-5xl`}
+                className="bg-gradient-card border-none shadow-soft hover:shadow-hover transition-all group"
               >
-                <CardContent className="p-8 md:p-12">
-                  <div className="grid md:grid-cols-2 gap-8 items-center">
-                    <div>
-                      <div className="inline-flex items-center justify-center w-20 h-20 rounded-lg bg-primary/10 text-primary mb-6">
-                        {service.icon}
-                      </div>
-                      <h2 className="text-3xl font-display font-bold mb-4">{service.title}</h2>
-                      <p className="text-lg text-muted-foreground mb-6">{service.description}</p>
-                      <Link to="/contact">
-                        <Button>Get Started</Button>
-                      </Link>
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-semibold mb-4">Key Features:</h3>
-                      <ul className="space-y-3">
-                        {service.features.map((feature, idx) => (
-                          <li key={idx} className="flex items-start gap-3">
-                            <CheckCircle className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-                            <span className="text-muted-foreground">{feature}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
+                <CardContent className="p-8 flex flex-col h-full">
+                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-lg bg-primary/10 text-primary mb-6 group-hover:scale-110 transition-transform">
+                    {service.icon}
                   </div>
+                  <h2 className="text-2xl font-display font-bold mb-3">{service.title}</h2>
+                  <p className="text-muted-foreground mb-6 flex-grow">{service.description}</p>
+                  <div className="space-y-2 mb-6">
+                    <h3 className="text-sm font-semibold text-primary">Key Features:</h3>
+                    <ul className="space-y-2">
+                      {service.features.slice(0, 3).map((feature, idx) => (
+                        <li key={idx} className="flex items-start gap-2 text-sm">
+                          <CheckCircle className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+                          <span className="text-muted-foreground">{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <Link to="/contact" className="mt-auto">
+                    <Button className="w-full">Get Started</Button>
+                  </Link>
                 </CardContent>
               </Card>
             ))}

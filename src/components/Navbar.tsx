@@ -5,17 +5,9 @@ import logoBlue from "@/assets/afrigotech-logo.png";
 import logoWhite from "@/assets/afrigotech-logo-white.png";
 
 const Navbar = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(true);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   const navLinks = [
     { path: "/", label: "Home" },
@@ -40,7 +32,7 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-20">
           <Link to="/" className="flex items-center space-x-3 group">
             <img
-              src={isScrolled ? logoBlue : logoWhite}
+              src={logoBlue}
               alt="Afrigotech Logo"
               className="h-12 w-auto transition-all duration-300 group-hover:scale-105"
             />
@@ -54,8 +46,8 @@ const Navbar = () => {
                 to={link.path}
                 className={`font-medium transition-colors duration-300 relative group ${
                   isActive(link.path)
-                    ? isScrolled ? "text-primary" : "text-white"
-                    : isScrolled ? "text-foreground hover:text-primary" : "text-white/90 hover:text-white"
+                    ? "text-primary"
+                    : "text-foreground hover:text-primary"
                 }`}
               >
                 {link.label}

@@ -12,7 +12,20 @@ const Team = () => {
       linkedin: "https://linkedin.com/in/isaya-kapama",
       email: "isaya@afrigotech.com",
     },
-    // Add more team members as they join
+    {
+      name: "Benjamin Athanas",
+      role: "Head of Tech",
+      bio: "Experienced software engineer specializing in full-stack development. Drives the technical execution of Afrigotech's innovative solutions.",
+      linkedin: "https://linkedin.com/in/benjamin-athanas",
+      email: "benjamin@afrigotech.com",
+    },
+    {
+      name: "Moses Nyatega",
+      role: "Head of Marketing",
+      bio: "Strategic marketing leader with expertise in digital growth and brand development. Expands Afrigotech's reach and impact across Tanzania.",
+      linkedin: "https://linkedin.com/in/moses-nyatega",
+      email: "moses@afrigotech.com",
+    },
   ];
 
   return (
