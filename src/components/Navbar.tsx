@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import logoBlue from "@/assets/afrigotech-logo.png";
 import logoWhite from "@/assets/afrigotech-logo-white.png";
 
@@ -15,6 +16,7 @@ const Navbar = () => {
     { path: "/services", label: "Services" },
     { path: "/portfolio", label: "Portfolio" },
     { path: "/team", label: "Team" },
+    { path: "/career", label: "Career" },
     { path: "/contact", label: "Contact" },
   ];
 
@@ -58,6 +60,11 @@ const Navbar = () => {
                 />
               </Link>
             ))}
+            <Link to="/contact">
+              <Button className="bg-white text-foreground hover:bg-white/90">
+                Get a Demo
+              </Button>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
