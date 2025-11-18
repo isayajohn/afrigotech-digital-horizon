@@ -61,7 +61,7 @@ const Navbar = () => {
               </Link>
             ))}
             <Link to="/contact">
-              <Button className="bg-white text-foreground hover:bg-white/90">
+              <Button className="bg-primary text-white hover:bg-primary/90">
                 Get a Demo
               </Button>
             </Link>
