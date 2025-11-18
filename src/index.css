@@ -42,6 +42,7 @@ All colors MUST be HSL.
     --gradient-card: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(210 40% 98%) 100%);
     --shadow-soft: 0 4px 20px -2px hsl(227 100% 35% / 0.1);
     --shadow-hover: 0 8px 30px -4px hsl(227 100% 35% / 0.15);
+    --shadow-glow: 0 0 20px hsl(227 100% 35% / 0.4), 0 0 40px hsl(227 100% 35% / 0.2);
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
     --sidebar-background: 0 0% 98%;
@@ -107,5 +108,20 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  .button-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% {
+      box-shadow: 0 0 20px hsl(227 100% 35% / 0.3);
+    }
+    50% {
+      box-shadow: 0 0 30px hsl(227 100% 35% / 0.5), 0 0 40px hsl(227 100% 35% / 0.3);
+    }
   }
 }
