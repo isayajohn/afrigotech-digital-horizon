@@ -1,7 +1,11 @@
 import { Linkedin, Mail } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Link } from "react-router-dom";
+import isayaPhoto from "@/assets/team/isaya-kapama.jpg";
+import benjaminPhoto from "@/assets/team/benjamin-athanas.jpg";
+import mosesPhoto from "@/assets/team/moses-nyatega.jpg";
 
 const Team = () => {
   const teamMembers = [
@@ -11,6 +15,7 @@ const Team = () => {
       bio: "Visionary technologist with a passion for creating impactful solutions in education. Leads Afrigotech's technical strategy and product development.",
       linkedin: "https://linkedin.com/in/isaya-kapama",
       email: "isaya@afrigotech.com",
+      photo: isayaPhoto,
     },
     {
       name: "Benjamin Athanas",
@@ -18,6 +23,7 @@ const Team = () => {
       bio: "Experienced software engineer specializing in full-stack development. Drives the technical execution of Afrigotech's innovative solutions.",
       linkedin: "https://linkedin.com/in/benjamin-athanas",
       email: "benjamin@afrigotech.com",
+      photo: benjaminPhoto,
     },
     {
       name: "Moses Nyatega",
@@ -25,6 +31,7 @@ const Team = () => {
       bio: "Strategic marketing leader with expertise in digital growth and brand development. Expands Afrigotech's reach and impact across Tanzania.",
       linkedin: "https://linkedin.com/in/moses-nyatega",
       email: "moses@afrigotech.com",
+      photo: mosesPhoto,
     },
   ];
 
@@ -47,9 +54,12 @@ const Team = () => {
             {teamMembers.map((member, index) => (
               <Card key={index} className="bg-gradient-card border-none shadow-soft hover:shadow-hover transition-all group">
                 <CardContent className="p-8 text-center">
-                  <div className="w-32 h-32 rounded-full bg-gradient-hero mx-auto mb-6 flex items-center justify-center text-white text-4xl font-bold">
-                    {member.name.split(' ').map(n => n[0]).join('')}
-                  </div>
+                  <Avatar className="w-32 h-32 mx-auto mb-6">
+                    <AvatarImage src={member.photo} alt={member.name} />
+                    <AvatarFallback className="bg-gradient-hero text-white text-4xl font-bold">
+                      {member.name.split(' ').map(n => n[0]).join('')}
+                    </AvatarFallback>
+                  </Avatar>
                   <h3 className="text-2xl font-display font-bold mb-2">{member.name}</h3>
                   <p className="text-primary font-medium mb-4">{member.role}</p>
                   <p className="text-muted-foreground mb-6">{member.bio}</p>
