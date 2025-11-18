@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { CreditCard, School, Smartphone, Globe, Users, TrendingUp, CheckCircle, ArrowRight } from "lucide-react";
+import { CreditCard, School, Smartphone, Globe, Users, TrendingUp, CheckCircle, ArrowRight, Quote } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { useState, useEffect } from "react";
@@ -53,6 +53,27 @@ const Home = () => {
     { icon: <TrendingUp />, title: "Innovation", description: "Cutting-edge solutions" },
     { icon: <CheckCircle />, title: "Integrity", description: "Trust and transparency" },
     { icon: <Users />, title: "Impact", description: "Real-world results" },
+  ];
+
+  const testimonials = [
+    {
+      name: "Dr. Amina Hassan",
+      role: "Principal, St. Mary's Secondary School",
+      company: "Dar es Salaam",
+      feedback: "Afrigotech's Smart Card System has revolutionized how we manage student payments. The integration with Azam Pay made everything seamless, and parents love the convenience.",
+    },
+    {
+      name: "John Mwakasege",
+      role: "ICT Coordinator",
+      company: "Dodoma International School",
+      feedback: "The Shule Kiganjani platform transformed our school administration. We've saved countless hours on manual processes and can now focus more on student success.",
+    },
+    {
+      name: "Grace Kimaro",
+      role: "Director",
+      company: "Mwanza Education Foundation",
+      feedback: "Working with Afrigotech has been exceptional. Their team understood our needs and delivered a custom solution that exceeded our expectations. Highly professional!",
+    },
   ];
 
   return (
@@ -189,8 +210,36 @@ const Home = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
+      {/* Testimonials Section */}
       <section className="py-20 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-display font-bold mb-4">What Our Clients Say</h2>
+            <p className="text-lg text-muted-foreground">Trusted by schools and organizations across Tanzania</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {testimonials.map((testimonial, index) => (
+              <Card key={index} className="bg-gradient-card border-none shadow-soft hover:shadow-hover transition-all">
+                <CardContent className="p-8">
+                  <Quote className="w-12 h-12 text-primary/20 mb-4" />
+                  <p className="text-muted-foreground mb-6 italic leading-relaxed">
+                    "{testimonial.feedback}"
+                  </p>
+                  <div className="border-t border-border pt-4">
+                    <p className="font-semibold text-foreground">{testimonial.name}</p>
+                    <p className="text-sm text-muted-foreground">{testimonial.role}</p>
+                    <p className="text-sm text-primary">{testimonial.company}</p>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 bg-secondary/30">
         <div className="container mx-auto px-4">
           <Card className="bg-gradient-card border-none shadow-soft">
             <CardContent className="p-12 text-center">
