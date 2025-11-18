@@ -2,12 +2,16 @@ import { Link } from "react-router-dom";
 import { CreditCard, School, Smartphone, Globe, Users, TrendingUp, CheckCircle, ArrowRight, Quote } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { useState, useEffect } from "react";
 import logoWhite from "@/assets/afrigotech-logo-white.png";
 import heroTeam from "@/assets/hero-team.jpg";
 import heroStudent from "@/assets/hero-student.jpg";
 import heroCollaboration from "@/assets/hero-collaboration.jpg";
 import heroWorkspace from "@/assets/hero-workspace.jpg";
+import aminaPhoto from "@/assets/testimonials/amina-hassan.jpg";
+import johnPhoto from "@/assets/testimonials/john-mwakasege.jpg";
+import gracePhoto from "@/assets/testimonials/grace-kimaro.jpg";
 
 const Home = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -61,18 +65,21 @@ const Home = () => {
       role: "Principal, St. Mary's Secondary School",
       company: "Dar es Salaam",
       feedback: "Afrigotech's Smart Card System has revolutionized how we manage student payments. The integration with Azam Pay made everything seamless, and parents love the convenience.",
+      photo: aminaPhoto,
     },
     {
       name: "John Mwakasege",
       role: "ICT Coordinator",
       company: "Dodoma International School",
       feedback: "The Shule Kiganjani platform transformed our school administration. We've saved countless hours on manual processes and can now focus more on student success.",
+      photo: johnPhoto,
     },
     {
       name: "Grace Kimaro",
       role: "Director",
       company: "Mwanza Education Foundation",
       feedback: "Working with Afrigotech has been exceptional. Their team understood our needs and delivered a custom solution that exceeded our expectations. Highly professional!",
+      photo: gracePhoto,
     },
   ];
 
@@ -222,15 +229,23 @@ const Home = () => {
             {testimonials.map((testimonial, index) => (
               <Card key={index} className="bg-gradient-card border-none shadow-soft hover:shadow-hover transition-all">
                 <CardContent className="p-8">
-                  <Quote className="w-12 h-12 text-primary/20 mb-4" />
-                  <p className="text-muted-foreground mb-6 italic leading-relaxed">
+                  <div className="flex items-center gap-4 mb-6">
+                    <Avatar className="w-16 h-16">
+                      <AvatarImage src={testimonial.photo} alt={testimonial.name} />
+                      <AvatarFallback className="bg-primary text-white text-lg">
+                        {testimonial.name.split(' ').map(n => n[0]).join('')}
+                      </AvatarFallback>
+                    </Avatar>
+                    <div>
+                      <p className="font-semibold text-foreground">{testimonial.name}</p>
+                      <p className="text-sm text-muted-foreground">{testimonial.role}</p>
+                      <p className="text-sm text-primary">{testimonial.company}</p>
+                    </div>
+                  </div>
+                  <Quote className="w-10 h-10 text-primary/20 mb-3" />
+                  <p className="text-muted-foreground italic leading-relaxed">
                     "{testimonial.feedback}"
                   </p>
-                  <div className="border-t border-border pt-4">
-                    <p className="font-semibold text-foreground">{testimonial.name}</p>
-                    <p className="text-sm text-muted-foreground">{testimonial.role}</p>
-                    <p className="text-sm text-primary">{testimonial.company}</p>
-                  </div>
                 </CardContent>
               </Card>
             ))}
