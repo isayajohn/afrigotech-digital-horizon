@@ -12,6 +12,11 @@ import heroWorkspace from "@/assets/hero-workspace.jpg";
 import aminaPhoto from "@/assets/testimonials/amina-hassan.jpg";
 import johnPhoto from "@/assets/testimonials/john-mwakasege.jpg";
 import gracePhoto from "@/assets/testimonials/grace-kimaro.jpg";
+import neemaLogo from "@/assets/partners/neema-logo.png";
+import gospelLogo from "@/assets/partners/gospel-logo.png";
+import azamPesaLogo from "@/assets/partners/azam-pesa-logo.png";
+import zenoPayLogo from "@/assets/partners/zeno-pay-logo.png";
+import nextSmsLogo from "@/assets/partners/next-sms-logo.png";
 
 const Home = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -136,12 +141,22 @@ const Home = () => {
           </div>
           
           <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
-            {["Neema", "Gospel", "Azam Pesa", "Zeno Pay", "Next SMS"].map((partner, index) => (
+            {[
+              { name: "Neema", logo: neemaLogo },
+              { name: "Gospel", logo: gospelLogo },
+              { name: "Azam Pesa", logo: azamPesaLogo },
+              { name: "Zeno Pay", logo: zenoPayLogo },
+              { name: "Next SMS", logo: nextSmsLogo },
+            ].map((partner, index) => (
               <div
                 key={index}
                 className="flex items-center justify-center px-6 py-4 bg-card rounded-lg border border-border hover:shadow-md transition-all duration-300 hover:scale-105"
               >
-                <span className="text-lg font-semibold text-muted-foreground">{partner}</span>
+                <img 
+                  src={partner.logo} 
+                  alt={`${partner.name} logo`}
+                  className="h-12 w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300"
+                />
               </div>
             ))}
           </div>
