@@ -117,7 +117,7 @@ const Home = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/services">
-                <Button size="lg" className="text-lg px-8 group bg-white text-foreground hover:bg-white/90">
+                <Button size="lg" className="text-lg px-8 group bg-white text-black hover:bg-white/90 hover:text-black">
                   Explore Services
                   <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
                 </Button>
