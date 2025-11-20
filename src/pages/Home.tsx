@@ -127,6 +127,27 @@ const Home = () => {
         </div>
       </section>
 
+      {/* Partners Section */}
+      <section className="py-16 bg-background border-y border-border">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-2xl font-display font-bold mb-2">Trusted Partners</h2>
+            <p className="text-muted-foreground">Working with leading organizations across Tanzania</p>
+          </div>
+          
+          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
+            {["Neema", "Gospel", "Azam Pesa", "Zeno Pay", "Next SMS"].map((partner, index) => (
+              <div
+                key={index}
+                className="flex items-center justify-center px-6 py-4 bg-card rounded-lg border border-border hover:shadow-md transition-all duration-300 hover:scale-105"
+              >
+                <span className="text-lg font-semibold text-muted-foreground">{partner}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* About Section */}
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
