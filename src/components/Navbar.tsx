@@ -3,13 +3,20 @@ import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { useTheme } from "next-themes";
 import logoBlue from "@/assets/afrigotech-logo.png";
 import logoWhite from "@/assets/afrigotech-logo-white.png";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(true);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const location = useLocation();
+  const { theme } = useTheme();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const navLinks = [
     { path: "/", label: "Home" },
@@ -35,7 +42,7 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-20">
           <Link to="/" className="flex items-center space-x-3 group">
             <img
-              src={logoBlue}
+              src={mounted && theme === "dark" ? logoWhite : logoBlue}
               alt="Afrigotech Logo"
               className="h-12 w-auto transition-all duration-300 group-hover:scale-105"
             />
