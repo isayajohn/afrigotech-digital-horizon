@@ -13,9 +13,8 @@ import aminaPhoto from "@/assets/testimonials/amina-hassan.jpg";
 import johnPhoto from "@/assets/testimonials/john-mwakasege.jpg";
 import gracePhoto from "@/assets/testimonials/grace-kimaro.jpg";
 import neemaLogo from "@/assets/partners/neema-logo.png";
-import gospelLogo from "@/assets/partners/gospel-logo.png";
 import azamPesaLogo from "@/assets/partners/azam-pesa-logo.png";
-import zenoPayLogo from "@/assets/partners/zeno-pay-logo.png";
+import zenoPayLogo from "@/assets/partners/zeno-pay-logo.svg";
 import nextSmsLogo from "@/assets/partners/next-sms-logo.png";
 
 const Home = () => {
@@ -142,8 +141,7 @@ const Home = () => {
           
           <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
             {[
-              { name: "Neema", logo: neemaLogo },
-              { name: "Gospel", logo: gospelLogo },
+              { name: "Neema Gospel", logo: neemaLogo },
               { name: "Azam Pesa", logo: azamPesaLogo },
               { name: "Zeno Pay", logo: zenoPayLogo },
               { name: "Next SMS", logo: nextSmsLogo },
