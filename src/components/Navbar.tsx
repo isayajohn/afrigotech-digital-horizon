@@ -1,115 +1,99 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
+
 import { Button } from "@/components/ui/button";
-import { ThemeToggle } from "@/components/ThemeToggle";
-import { useTheme } from "next-themes";
+import { navLinks } from "@/content/site";
 import logoBlue from "@/assets/afrigotech-logo.png";
-import logoWhite from "@/assets/afrigotech-logo-white.png";
 
 const Navbar = () => {
-  const [isScrolled, setIsScrolled] = useState(true);
+  const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [mounted, setMounted] = useState(false);
   const location = useLocation();
-  const { theme } = useTheme();
 
   useEffect(() => {
-    setMounted(true);
+    const onScroll = () => setIsScrolled(window.scrollY > 24);
+
+    onScroll();
+    window.addEventListener("scroll", onScroll);
+
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const navLinks = [
-    { path: "/", label: "Home" },
-    { path: "/about", label: "About Us" },
-    { path: "/services", label: "Services" },
-    { path: "/portfolio", label: "Portfolio" },
-    { path: "/team", label: "Team" },
-    { path: "/career", label: "Career" },
-    { path: "/contact", label: "Contact" },
-  ];
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+  }, [location.pathname]);
 
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? "bg-card/95 backdrop-blur-md shadow-soft"
-          : "bg-transparent"
-      }`}
-    >
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-20">
-          <Link to="/" className="flex items-center space-x-3 group">
-            <img
-              src={mounted && theme === "dark" ? logoWhite : logoBlue}
-              alt="Afrigotech Logo"
-              className="h-12 w-auto transition-all duration-300 group-hover:scale-105"
-            />
+    <header className="fixed inset-x-0 top-0 z-50 px-4 pt-4 md:px-6">
+      <div
+        className={`mx-auto max-w-7xl rounded-full border transition-all duration-300 ${
+          isScrolled
+            ? "border-border/85 bg-background/96 shadow-soft backdrop-blur-xl"
+            : "border-border/75 bg-background/92 shadow-soft backdrop-blur-lg"
+        }`}
+      >
+        <div className="flex items-center justify-between gap-4 px-4 py-3 md:px-6">
+          <Link to="/" className="flex items-center gap-3">
+            <img src={logoBlue} alt="Afrigotech" className="h-11 w-auto" />
           </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <nav className="hidden items-center gap-2 lg:flex">
             {navLinks.map((link) => (
               <Link
                 key={link.path}
                 to={link.path}
-                className={`font-medium transition-colors duration-300 relative group ${
+                className={`rounded-full px-4 py-2 text-sm font-medium transition-all ${
                   isActive(link.path)
-                    ? "text-primary"
-                    : "text-foreground hover:text-primary"
+                    ? "bg-foreground text-background"
+                    : "text-foreground/90 hover:bg-secondary hover:text-foreground"
                 }`}
               >
                 {link.label}
-                <span
-                  className={`absolute -bottom-1 left-0 h-0.5 bg-primary transition-all duration-300 ${
-                    isActive(link.path) ? "w-full" : "w-0 group-hover:w-full"
-                  }`}
-                />
               </Link>
             ))}
-            <ThemeToggle />
-            <Link to="/demo">
-              <Button className="bg-primary text-white hover:bg-primary/90 button-glow">
-                Get a Demo
-              </Button>
-            </Link>
+          </nav>
+
+          <div className="hidden lg:block">
+            <Button asChild className="button-glow">
+              <Link to="/demo">Book a Demo</Link>
+            </Button>
           </div>
 
-          {/* Mobile Menu Controls */}
-          <div className="md:hidden flex items-center gap-2">
-            <ThemeToggle />
-            <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="p-2 text-foreground hover:text-primary transition-colors"
-              aria-label="Toggle menu"
-            >
-              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-          </div>
+          <button
+            type="button"
+            onClick={() => setIsMobileMenuOpen((open) => !open)}
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-border bg-background text-foreground shadow-soft lg:hidden"
+            aria-label="Toggle menu"
+          >
+            {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
         </div>
 
-        {/* Mobile Navigation */}
-        {isMobileMenuOpen && (
-          <div className="md:hidden py-4 border-t border-border">
-            {navLinks.map((link) => (
-              <Link
-                key={link.path}
-                to={link.path}
-                onClick={() => setIsMobileMenuOpen(false)}
-                className={`block py-3 px-4 font-medium transition-colors duration-300 ${
-                  isActive(link.path)
-                    ? "text-primary bg-secondary/50"
-                    : "text-foreground hover:text-primary hover:bg-secondary/30"
-                }`}
-              >
-                {link.label}
-              </Link>
-            ))}
+        {isMobileMenuOpen ? (
+          <div className="border-t border-border/70 px-4 pb-4 pt-2 lg:hidden">
+            <div className="grid gap-2">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  className={`rounded-2xl px-4 py-3 text-sm font-medium ${
+                    isActive(link.path) ? "bg-foreground text-background" : "bg-background/72 text-foreground"
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              ))}
+              <Button asChild className="mt-2">
+                <Link to="/demo">Book a Demo</Link>
+              </Button>
+            </div>
           </div>
-        )}
+        ) : null}
       </div>
-    </nav>
+    </header>
   );
 };
 

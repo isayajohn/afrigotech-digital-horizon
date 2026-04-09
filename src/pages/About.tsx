@@ -1,122 +1,68 @@
-import { Target, Eye, Heart, Users } from "lucide-react";
+import CTASection from "@/components/theme/CTASection";
+import MetricGrid from "@/components/theme/MetricGrid";
+import PageHero from "@/components/theme/PageHero";
+import SectionHeading from "@/components/theme/SectionHeading";
 import { Card, CardContent } from "@/components/ui/card";
+import { aboutMilestones, capabilityPillars, homeMetrics, processSteps } from "@/content/site";
 
 const About = () => {
-  const values = [
-    {
-      icon: <Target className="w-12 h-12" />,
-      title: "Innovation",
-      description: "We constantly push boundaries to create cutting-edge solutions that address real-world challenges in education and community development.",
-    },
-    {
-      icon: <Heart className="w-12 h-12" />,
-      title: "Integrity",
-      description: "Trust and transparency are the foundation of our relationships with clients, partners, and communities we serve.",
-    },
-    {
-      icon: <Users className="w-12 h-12" />,
-      title: "Impact",
-      description: "Every solution we create is designed to make a measurable difference in people's lives and communities.",
-    },
-    {
-      icon: <Eye className="w-12 h-12" />,
-      title: "Collaboration",
-      description: "We believe in the power of partnerships and work closely with stakeholders to achieve shared goals.",
-    },
-  ];
-
-  const milestones = [
-    { year: "2022", event: "Afrigotech founded in Dodoma, Tanzania" },
-    { year: "2023", event: "Launched Shule Kiganjani platform" },
-    { year: "2023", event: "Introduced Smart Card System with Azam Pay integration" },
-    { year: "2024", event: "Expanded services to 50+ schools across Tanzania" },
-    { year: "2025", event: "Launched Iarise AAC assistive technology" },
-  ];
-
   return (
-    <div className="min-h-screen pt-20">
-      {/* Hero Section */}
-      <section className="py-20 bg-gradient-hero text-white">
-        <div className="container mx-auto px-4 text-center">
-          <h1 className="text-5xl md:text-6xl font-display font-bold mb-6">About Afrigotech</h1>
-          <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto">
-            Transforming education and communities through innovative technology since 2022
-          </p>
-        </div>
-      </section>
+    <div className="min-h-screen">
+      <PageHero
+        eyebrow="About Afrigotech"
+        title="A digital team focused on useful systems, trusted relationships, and measurable progress."
+        description="The redesign keeps your story intact while presenting it with stronger pacing, better hierarchy, and a more confident agency feel."
+        aside={<MetricGrid items={homeMetrics.slice(0, 2)} compact />}
+      />
 
-      {/* Story Section */}
-      <section className="py-20 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <Card className="bg-gradient-card border-none shadow-soft">
-              <CardContent className="p-8 md:p-12">
-                <h2 className="text-3xl font-display font-bold mb-6">Our Story</h2>
-                <div className="space-y-4 text-muted-foreground text-lg">
-                  <p>
-                    Founded in 2022 in the heart of Tanzania's capital, Dodoma, Afrigotech was born from a vision to bridge the digital divide in education and community services across Tanzania.
-                  </p>
-                  <p>
-                    We recognized that many schools and communities struggled with outdated administrative processes, limited access to technology, and a lack of digital infrastructure. Our founders, driven by a passion for innovation and social impact, set out to create solutions that would empower these institutions.
-                  </p>
-                  <p>
-                    Today, Afrigotech serves over 50 schools and thousands of students across Tanzania, providing comprehensive technology solutions that streamline operations, enhance learning experiences, and create new opportunities for growth.
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
+      <section className="px-4 py-16 md:px-6 md:py-24">
+        <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)]">
+          <Card className="surface-card border-none">
+            <CardContent className="p-8 md:p-10">
+              <SectionHeading
+                eyebrow="Our story"
+                title="Built in Dodoma to close digital gaps with practical product thinking."
+                description="Afrigotech started with a simple observation: schools and community-focused organisations were carrying operational complexity that better systems could reduce. Since 2022, the team has focused on software, payments, and delivery support that help people work more clearly every day."
+              />
+              <p className="mt-6 text-sm leading-8 text-muted-foreground">
+                This refactor leans into that positioning. Rather than looking like a generic software brochure, the site
+                now tells a more mature story about strategy, execution, and trust.
+              </p>
+            </CardContent>
+          </Card>
 
-      {/* Mission & Vision */}
-      <section className="py-20 bg-secondary/30">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            <Card className="bg-gradient-card border-none shadow-soft">
-              <CardContent className="p-8">
-                <div className="w-16 h-16 rounded-lg bg-primary/10 flex items-center justify-center text-primary mb-6">
-                  <Target className="w-8 h-8" />
-                </div>
-                <h2 className="text-3xl font-display font-bold mb-4">Our Mission</h2>
-                <p className="text-muted-foreground text-lg">
-                  To empower education and communities through digital innovation, creating accessible, impactful technology solutions that transform lives across Tanzania.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-gradient-card border-none shadow-soft">
-              <CardContent className="p-8">
-                <div className="w-16 h-16 rounded-lg bg-accent/10 flex items-center justify-center text-accent mb-6">
-                  <Eye className="w-8 h-8" />
-                </div>
-                <h2 className="text-3xl font-display font-bold mb-4">Our Vision</h2>
-                <p className="text-muted-foreground text-lg">
-                  To become Tanzania's leading provider of impactful technology solutions, setting the standard for innovation in education and community development.
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Core Values */}
-      <section className="py-20 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-display font-bold mb-4">Our Core Values</h2>
-            <p className="text-lg text-muted-foreground">The principles that guide everything we do</p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {values.map((value, index) => (
-              <Card key={index} className="group hover:shadow-hover transition-all duration-300 bg-gradient-card border-none">
-                <CardContent className="p-6 text-center">
-                  <div className="inline-flex items-center justify-center w-20 h-20 rounded-lg bg-primary/10 text-primary mb-4 group-hover:scale-110 transition-transform">
-                    {value.icon}
+          <Card className="surface-dark border-none">
+            <CardContent className="p-8 md:p-10">
+              <p className="text-sm font-semibold uppercase tracking-[0.22em] text-primary">What guides the work</p>
+              <div className="mt-8 grid gap-6">
+                {capabilityPillars.map((pillar) => (
+                  <div key={pillar.title} className="rounded-[1.5rem] border border-white/10 bg-white/6 p-5">
+                    <h3 className="font-display text-2xl font-semibold text-white">{pillar.title}</h3>
+                    <p className="mt-3 text-sm leading-7 text-white/72">{pillar.description}</p>
                   </div>
-                  <h3 className="text-xl font-semibold mb-3">{value.title}</h3>
-                  <p className="text-muted-foreground">{value.description}</p>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
+      <section className="px-4 py-16 md:px-6 md:py-20">
+        <div className="mx-auto max-w-7xl">
+          <SectionHeading
+            eyebrow="Journey"
+            title="Milestones presented in a clearer, more editorial timeline."
+            description="The new timeline treatment is easier to scan and feels more aligned with the overall premium direction."
+            align="center"
+          />
+          <div className="mt-12 grid gap-5">
+            {aboutMilestones.map((milestone) => (
+              <Card key={`${milestone.year}-${milestone.event}`} className="surface-card border-none">
+                <CardContent className="grid gap-6 p-6 md:grid-cols-[120px_minmax(0,1fr)] md:items-center md:p-8">
+                  <div className="rounded-[1.25rem] bg-foreground px-5 py-5 text-center font-display text-3xl font-semibold text-background">
+                    {milestone.year}
+                  </div>
+                  <p className="text-base leading-7 text-foreground/84">{milestone.event}</p>
                 </CardContent>
               </Card>
             ))}
@@ -124,30 +70,37 @@ const About = () => {
         </div>
       </section>
 
-      {/* Timeline */}
-      <section className="py-20 bg-secondary/30">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-display font-bold mb-4">Our Journey</h2>
-            <p className="text-lg text-muted-foreground">Key milestones in our growth</p>
-          </div>
-
-          <div className="max-w-3xl mx-auto">
-            <div className="space-y-6">
-              {milestones.map((milestone, index) => (
-                <Card key={index} className="bg-gradient-card border-none shadow-soft hover:shadow-hover transition-all">
-                  <CardContent className="p-6 flex items-center gap-6">
-                    <div className="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                      <span className="text-2xl font-bold text-primary">{milestone.year}</span>
-                    </div>
-                    <p className="text-lg">{milestone.event}</p>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
+      <section className="surface-dark px-4 py-16 md:px-6 md:py-24">
+        <div className="mx-auto max-w-7xl">
+          <SectionHeading
+            eyebrow="How we work"
+            title="A process designed to stay close to outcomes."
+            description="This section now reinforces confidence in the team’s operating model, not just the product list."
+            className="text-white [&_h2]:text-white [&_p]:text-white/72"
+          />
+          <div className="mt-12 grid gap-5 lg:grid-cols-4">
+            {processSteps.map((step) => (
+              <Card key={step.number} className="border-white/10 bg-white/6 text-white">
+                <CardContent className="p-6">
+                  <div className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">{step.number}</div>
+                  <h3 className="mt-4 font-display text-2xl font-semibold">{step.title}</h3>
+                  <p className="mt-4 text-sm leading-7 text-white/72">{step.description}</p>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </div>
       </section>
+
+      <CTASection
+        eyebrow="Work with us"
+        title="Looking for a partner that can shape, build, and support your next digital initiative?"
+        description="Afrigotech’s story is strongest when it connects directly to a clear next step. The new theme system keeps that invitation consistent."
+        primaryLabel="Contact Afrigotech"
+        primaryTo="/contact"
+        secondaryLabel="See services"
+        secondaryTo="/services"
+      />
     </div>
   );
 };

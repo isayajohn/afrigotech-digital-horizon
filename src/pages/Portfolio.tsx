@@ -1,99 +1,85 @@
-import { ExternalLink, School, CreditCard, Smartphone } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
+import { ExternalLink } from "lucide-react";
+
+import CTASection from "@/components/theme/CTASection";
+import MetricGrid from "@/components/theme/MetricGrid";
+import PageHero from "@/components/theme/PageHero";
+import SectionHeading from "@/components/theme/SectionHeading";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { caseStudies, homeMetrics } from "@/content/site";
 
 const Portfolio = () => {
-  const projects = [
-    {
-      icon: <School className="w-12 h-12" />,
-      title: "Shule Kiganjani",
-      category: "School Management SaaS",
-      description: "A comprehensive school management platform that streamlines administration, enhances communication, and improves educational outcomes.",
-      outcomes: [
-        "50+ schools using the platform",
-        "10,000+ students managed",
-        "95% user satisfaction rate",
-        "40% reduction in admin time",
-      ],
-      link: "https://shulekiganjani.com",
-      color: "primary",
-    },
-    {
-      icon: <CreditCard className="w-12 h-12" />,
-      title: "Smart Student Card",
-      category: "Digital Payment Solution",
-      description: "An innovative smart card system powered by Azam Pay that enables cashless transactions and financial management in schools.",
-      outcomes: [
-        "Secure digital payments",
-        "Real-time transaction tracking",
-        "Parent-friendly payment system",
-        "Reduced cash handling risks",
-      ],
-      link: "https://afrigotech.com",
-      color: "accent",
-    },
-    {
-      icon: <Smartphone className="w-12 h-12" />,
-      title: "Iarise AAC",
-      category: "Assistive Communication Tool",
-      description: "An augmentative and alternative communication application designed to help individuals with speech difficulties communicate effectively.",
-      outcomes: [
-        "Improved communication for users",
-        "Customizable interface",
-        "Multi-language support",
-        "Accessible design",
-      ],
-      link: "https://iarise.app",
-      color: "primary",
-    },
-  ];
-
   return (
-    <div className="min-h-screen pt-20">
-      {/* Hero Section */}
-      <section className="py-20 bg-gradient-hero text-white">
-        <div className="container mx-auto px-4 text-center">
-          <h1 className="text-5xl md:text-6xl font-display font-bold mb-6">Our Portfolio</h1>
-          <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto">
-            Transforming ideas into impactful digital solutions
-          </p>
-        </div>
-      </section>
+    <div className="min-h-screen">
+      <PageHero
+        eyebrow="Portfolio"
+        title="Project storytelling that feels closer to a modern digital agency case-study flow."
+        description="This refactor gives Afrigotech’s work more room to breathe with stronger narrative framing, clearer metrics, and a more polished portfolio rhythm."
+        aside={<MetricGrid items={homeMetrics.slice(1)} compact />}
+      />
 
-      {/* Projects Section */}
-      <section className="py-20 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="space-y-8">
-            {projects.map((project, index) => (
-              <Card key={index} className="bg-gradient-card border-none shadow-soft hover:shadow-hover transition-all max-w-6xl mx-auto">
-                <CardContent className="p-8 md:p-12">
-                  <div className="grid md:grid-cols-5 gap-8 items-start">
-                    <div className="md:col-span-2">
-                      <div className={`inline-flex items-center justify-center w-20 h-20 rounded-lg ${
-                        project.color === 'primary' ? 'bg-primary/10 text-primary' : 'bg-accent/10 text-accent'
-                      } mb-6`}>
-                        {project.icon}
-                      </div>
-                      <h2 className="text-3xl font-display font-bold mb-2">{project.title}</h2>
-                      <p className="text-sm font-medium text-primary mb-4">{project.category}</p>
-                      <p className="text-muted-foreground mb-6">{project.description}</p>
-                      <a href={project.link} target="_blank" rel="noopener noreferrer">
-                        <Button className="gap-2">
-                          Preview Project
-                          <ExternalLink className="w-4 h-4" />
-                        </Button>
+      <section className="px-4 py-16 md:px-6 md:py-24">
+        <div className="mx-auto max-w-7xl">
+          <SectionHeading
+            eyebrow="Selected work"
+            title="Sharper layouts for outcomes, not just features."
+            description="Each case study now reads like a focused business story with enough structure to build credibility quickly."
+          />
+
+          <div className="mt-12 grid gap-6">
+            {caseStudies.map((study, index) => (
+              <Card
+                key={study.title}
+                className={`overflow-hidden border-none ${
+                  index % 2 === 0 ? "surface-card" : "surface-dark text-white"
+                }`}
+              >
+                <CardContent className="grid gap-8 p-8 md:p-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-start">
+                  <div>
+                    <p className={`text-sm font-semibold uppercase tracking-[0.18em] ${index % 2 === 0 ? "text-primary" : "text-primary"}`}>
+                      {study.category}
+                    </p>
+                    <h2 className="mt-4 font-display text-3xl font-semibold md:text-4xl">{study.title}</h2>
+                    <p className={`mt-5 text-sm leading-7 ${index % 2 === 0 ? "text-muted-foreground" : "text-white/74"}`}>
+                      {study.description}
+                    </p>
+                    <p
+                      className={`mt-6 rounded-[1.5rem] border p-5 text-sm leading-7 ${
+                        index % 2 === 0
+                          ? "border-border/70 bg-background/75 text-foreground/80"
+                          : "border-white/10 bg-white/6 text-white/78"
+                      }`}
+                    >
+                      {study.impact}
+                    </p>
+                    <Button
+                      asChild
+                      variant={index % 2 === 0 ? "default" : "outline"}
+                      className={index % 2 === 0 ? "mt-6" : "mt-6 border-white/14 bg-white/5 text-white hover:bg-white/10"}
+                    >
+                      <a href={study.link} target="_blank" rel="noreferrer">
+                        Preview project
+                        <ExternalLink className="h-4 w-4" />
                       </a>
-                    </div>
-                    <div className="md:col-span-3">
-                      <h3 className="text-xl font-semibold mb-4">Key Outcomes:</h3>
-                      <div className="grid sm:grid-cols-2 gap-4">
-                        {project.outcomes.map((outcome, idx) => (
-                          <div key={idx} className="bg-secondary/50 rounded-lg p-4">
-                            <p className="font-medium">{outcome}</p>
-                          </div>
-                        ))}
+                    </Button>
+                  </div>
+
+                  <div className="grid gap-4 md:grid-cols-3 lg:grid-cols-1">
+                    {study.metrics.map((metric) => (
+                      <div
+                        key={metric.label}
+                        className={`rounded-[1.5rem] border p-5 ${
+                          index % 2 === 0
+                            ? "border-border/70 bg-card"
+                            : "border-white/10 bg-white/6"
+                        }`}
+                      >
+                        <div className="text-3xl font-semibold">{metric.value}</div>
+                        <div className={`mt-2 text-xs uppercase tracking-[0.18em] ${index % 2 === 0 ? "text-muted-foreground" : "text-white/55"}`}>
+                          {metric.label}
+                        </div>
                       </div>
-                    </div>
+                    ))}
                   </div>
                 </CardContent>
               </Card>
@@ -102,33 +88,15 @@ const Portfolio = () => {
         </div>
       </section>
 
-      {/* Impact Section */}
-      <section className="py-20 bg-secondary/30">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-display font-bold mb-4">Our Impact</h2>
-            <p className="text-lg text-muted-foreground">Making a difference across Tanzania</p>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
-            <div className="text-center">
-              <div className="text-5xl font-bold text-primary mb-2">50+</div>
-              <div className="text-muted-foreground">Schools</div>
-            </div>
-            <div className="text-center">
-              <div className="text-5xl font-bold text-primary mb-2">10K+</div>
-              <div className="text-muted-foreground">Students</div>
-            </div>
-            <div className="text-center">
-              <div className="text-5xl font-bold text-primary mb-2">3</div>
-              <div className="text-muted-foreground">Major Products</div>
-            </div>
-            <div className="text-center">
-              <div className="text-5xl font-bold text-primary mb-2">100%</div>
-              <div className="text-muted-foreground">Satisfaction</div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <CTASection
+        eyebrow="Build the next case study"
+        title="Have a project that needs product design, software delivery, or a better digital customer experience?"
+        description="The refreshed portfolio now points naturally into the contact and demo journeys, just like the reference site’s stronger conversion flow."
+        primaryLabel="Talk to the team"
+        primaryTo="/contact"
+        secondaryLabel="View services"
+        secondaryTo="/services"
+      />
     </div>
   );
 };

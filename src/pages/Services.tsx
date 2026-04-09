@@ -1,113 +1,58 @@
-import { CreditCard, School, Smartphone, Globe, GraduationCap, CheckCircle } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { Link } from "react-router-dom";
 
+import CTASection from "@/components/theme/CTASection";
+import PageHero from "@/components/theme/PageHero";
+import SectionHeading from "@/components/theme/SectionHeading";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { capabilityPillars, services } from "@/content/site";
+
 const Services = () => {
-  const services = [
-    {
-      icon: <CreditCard className="w-12 h-12" />,
-      title: "Smart Card Services",
-      description: "Powered by Azam Pay integration, our smart card system revolutionizes school financial management.",
-      features: [
-        "Digital payment solutions for schools",
-        "Secure student identification cards",
-        "Cashless transactions on campus",
-        "Real-time financial tracking",
-        "Parent-friendly payment options",
-      ],
-    },
-    {
-      icon: <School className="w-12 h-12" />,
-      title: "School Management System",
-      description: "Shule Kiganjani is a comprehensive SaaS platform that transforms school administration.",
-      features: [
-        "Student information management",
-        "Teacher and staff management",
-        "Automated attendance tracking",
-        "Grade and report card generation",
-        "Parent-teacher communication portal",
-      ],
-    },
-    {
-      icon: <Smartphone className="w-12 h-12" />,
-      title: "Mobile App Development",
-      description: "Custom mobile applications tailored to your specific needs and goals.",
-      features: [
-        "Native Android & iOS development",
-        "Cross-platform solutions",
-        "User-centric design",
-        "Cloud integration",
-        "Ongoing maintenance and support",
-      ],
-    },
-    {
-      icon: <Globe className="w-12 h-12" />,
-      title: "Web Development",
-      description: "Scalable, modern web systems built with cutting-edge technologies.",
-      features: [
-        "Responsive web design",
-        "E-commerce solutions",
-        "Content management systems",
-        "Custom web applications",
-        "API development and integration",
-      ],
-    },
-    {
-      icon: <GraduationCap className="w-12 h-12" />,
-      title: "IT Consultation & Training",
-      description: "Empower your team with technical knowledge and strategic IT guidance.",
-      features: [
-        "Technology strategy consultation",
-        "Youth IT training programs",
-        "Business digital transformation",
-        "Cybersecurity awareness",
-        "Software training and support",
-      ],
-    },
-  ];
-
   return (
-    <div className="min-h-screen pt-20">
-      {/* Hero Section */}
-      <section className="py-20 bg-gradient-hero text-white">
-        <div className="container mx-auto px-4 text-center">
-          <h1 className="text-5xl md:text-6xl font-display font-bold mb-6">Our Services</h1>
-          <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto">
-            Comprehensive technology solutions designed to empower schools and communities
-          </p>
-        </div>
-      </section>
+    <div className="min-h-screen">
+      <PageHero
+        eyebrow="Services"
+        title="A clearer services architecture with stronger hierarchy and more confident presentation."
+        description="The new system shifts these pages away from generic cards and toward a sharper agency-style offer structure."
+        aside={
+          <Card className="border-white/10 bg-white/6 text-white">
+            <CardContent className="p-7">
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Service promise</p>
+              <p className="mt-4 text-base leading-7 text-white/76">
+                We combine product thinking, implementation quality, and ongoing support so your team gets more than
+                a launch date.
+              </p>
+            </CardContent>
+          </Card>
+        }
+      />
 
-      {/* Services Section */}
-      <section className="py-20 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-            {services.map((service, index) => (
-              <Card
-                key={index}
-                className="bg-gradient-card border-none shadow-soft hover:shadow-hover transition-all group"
-              >
-                <CardContent className="p-8 flex flex-col h-full">
-                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-lg bg-primary/10 text-primary mb-6 group-hover:scale-110 transition-transform">
-                    {service.icon}
+      <section className="px-4 py-16 md:px-6 md:py-24">
+        <div className="mx-auto max-w-7xl">
+          <SectionHeading
+            eyebrow="Core offers"
+            title="Every service now lives inside the same visual and content system."
+            description="That makes the site easier to expand later without drifting away from the new theme."
+            align="center"
+          />
+          <div className="mt-12 grid gap-6 lg:grid-cols-2 xl:grid-cols-3">
+            {services.map((service) => (
+              <Card key={service.title} className="group surface-card border-none">
+                <CardContent className="p-8">
+                  <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-foreground text-background transition-transform duration-300 group-hover:-translate-y-1">
+                    <service.icon className="h-6 w-6" />
                   </div>
-                  <h2 className="text-2xl font-display font-bold mb-3">{service.title}</h2>
-                  <p className="text-muted-foreground mb-6 flex-grow">{service.description}</p>
-                  <div className="space-y-2 mb-6">
-                    <h3 className="text-sm font-semibold text-primary">Key Features:</h3>
-                    <ul className="space-y-2">
-                      {service.features.slice(0, 3).map((feature, idx) => (
-                        <li key={idx} className="flex items-start gap-2 text-sm">
-                          <CheckCircle className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
-                          <span className="text-muted-foreground">{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
+                  <h2 className="font-display text-2xl font-semibold">{service.title}</h2>
+                  <p className="mt-4 text-sm leading-7 text-muted-foreground">{service.description}</p>
+                  <div className="mt-6 space-y-3">
+                    {service.features?.map((feature) => (
+                      <div key={feature} className="flex items-start gap-3 text-sm text-foreground/84">
+                        <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" />
+                        <span>{feature}</span>
+                      </div>
+                    ))}
                   </div>
-                  <Link to="/contact" className="mt-auto">
-                    <Button className="w-full">Get Started</Button>
-                  </Link>
                 </CardContent>
               </Card>
             ))}
@@ -115,29 +60,61 @@ const Services = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 bg-secondary/30">
-        <div className="container mx-auto px-4">
-          <Card className="bg-gradient-card border-none shadow-soft max-w-4xl mx-auto">
-            <CardContent className="p-12 text-center">
-              <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">
-                Ready to Get Started?
-              </h2>
-              <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-                Let's discuss how our services can help transform your school or business
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link to="/contact">
-                  <Button size="lg">Contact Us</Button>
-                </Link>
-                <Link to="/portfolio">
-                  <Button size="lg" variant="outline">View Our Work</Button>
-                </Link>
-              </div>
-            </CardContent>
-          </Card>
+      <section className="surface-dark px-4 py-16 md:px-6 md:py-20">
+        <div className="mx-auto max-w-7xl">
+          <SectionHeading
+            eyebrow="Why this format works"
+            title="Service pages should explain value, not just list deliverables."
+            description="These supporting blocks borrow the reference site’s confidence and pacing while staying true to Afrigotech’s positioning."
+            className="text-white [&_h2]:text-white [&_p]:text-white/72"
+          />
+          <div className="mt-12 grid gap-6 lg:grid-cols-3">
+            {capabilityPillars.map((pillar) => (
+              <Card key={pillar.title} className="border-white/10 bg-white/6 text-white">
+                <CardContent className="p-7">
+                  <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-white/10 text-primary">
+                    <pillar.icon className="h-5 w-5" />
+                  </div>
+                  <h3 className="font-display text-2xl font-semibold">{pillar.title}</h3>
+                  <p className="mt-4 text-sm leading-7 text-white/72">{pillar.description}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
         </div>
       </section>
+
+      <section className="px-4 py-16 md:px-6 md:py-20">
+        <div className="mx-auto max-w-6xl rounded-[2rem] border border-border/70 bg-card/75 p-8 shadow-soft md:p-10">
+          <SectionHeading
+            eyebrow="Need something specific?"
+            title="The new CTA treatment makes service pages feel more deliberate."
+            description="Instead of a generic closing box, this layout keeps momentum with stronger typography and clearer actions."
+            align="center"
+          />
+          <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <Button asChild size="lg">
+              <Link to="/contact">
+                Discuss your project
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </Button>
+            <Button asChild size="lg" variant="outline">
+              <Link to="/portfolio">See our work</Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      <CTASection
+        eyebrow="Next step"
+        title="Want to carry this design language into lead generation and demo flows too?"
+        description="The shared theme components now make that possible without rebuilding each page from scratch."
+        primaryLabel="Request a demo"
+        primaryTo="/demo"
+        secondaryLabel="Contact us"
+        secondaryTo="/contact"
+      />
     </div>
   );
 };
