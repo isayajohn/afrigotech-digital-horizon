@@ -20,29 +20,45 @@ import {
   trustMetrics,
 } from "@/content/site";
 
-const Home = () => {
+export default function Home() {
   return (
     <div className="min-h-screen">
       <PageHero
-        className="[&_.page-hero-eyebrow]:border-border/70 [&_.page-hero-eyebrow]:bg-background/90 [&_.page-hero-eyebrow]:text-foreground/72 [&_.page-hero-title]:text-foreground [&_.page-hero-description]:text-foreground/82"
-        eyebrow="Digital Systems With Direction"
-        title="We design and build digital products that help schools and organisations move with confidence."
-        description="Inspired by strong agency-style storytelling, this new Afrigotech direction pairs bolder presentation with the practical delivery focus your clients already trust."
+        eyebrow="Transform Education"
+        title="Unlock Your School's Digital Future"
+        description="Streamline operations, engage students, and scale with confidence using our comprehensive software solutions designed for African institutions."
         aside={
-          <div className="grid gap-4 md:grid-cols-2">
-            {heroGallery.map((image, index) => (
-              <div
-                key={image.alt}
-                className={`overflow-hidden rounded-[1.75rem] border border-white/10 shadow-soft ${
-                  index === 0 ? "md:translate-y-8" : ""
-                }`}
-              >
-                <img src={image.src} alt={image.alt} className="h-48 w-full object-cover md:h-56" />
-              </div>
-            ))}
+          <div className="space-y-6 lg:max-w-md">
+            <div className="group relative overflow-hidden rounded-3xl shadow-2xl ring-1 ring-white/20">
+              <img
+                src={heroGallery[3]?.src}
+                alt={heroGallery[3]?.alt ?? "Hero image"}
+                className="h-72 w-full object-cover transition-transform duration-500 group-hover:scale-[1.02] lg:h-[450px]"
+              />
+              <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 via-blue-600/20 to-transparent" />
+            </div>
           </div>
         }
-      />
+      >
+        <div className="mt-6 flex flex-col gap-3 pt-2 sm:flex-row">
+          <Button
+            size="lg"
+            asChild
+            className="flex-1 bg-gradient-to-r from-primary to-accent font-semibold text-primary-foreground shadow-glow hover:shadow-glow"
+          >
+            <Link to="/demo">Book a Demo</Link>
+          </Button>
+
+          <Button
+            variant="outline"
+            size="lg"
+            asChild
+            className="flex-1 border-white/50 bg-white/5 font-semibold text-white backdrop-blur-sm hover:bg-white/10"
+          >
+            <Link to="/services">Explore Services</Link>
+          </Button>
+        </div>
+      </PageHero>
 
       <section className="px-4 py-12 md:px-6 md:py-16">
         <div className="mx-auto max-w-7xl">
@@ -56,8 +72,9 @@ const Home = () => {
             <SectionHeading
               eyebrow="Trusted by partners"
               title="A modern digital presence backed by real work on the ground."
-              description="We kept Afrigotech’s proof points front and center so the redesign feels sharper without losing credibility."
+              description="We kept Afrigotech's proof points front and center so the redesign feels sharper without losing credibility."
             />
+
             <div className="grid flex-1 grid-cols-2 gap-4 sm:grid-cols-4">
               {partnerLogos.map((partner) => (
                 <div
@@ -86,39 +103,61 @@ const Home = () => {
           />
 
           <div className="mt-12 grid gap-6 lg:grid-cols-3">
-            {capabilityPillars.map((pillar) => (
-              <Card key={pillar.title} className="surface-card border-none">
-                <CardContent className="p-8">
-                  <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/12 text-primary">
-                    <pillar.icon className="h-6 w-6" />
-                  </div>
-                  <h3 className="font-display text-2xl font-semibold">{pillar.title}</h3>
-                  <p className="mt-4 text-sm leading-7 text-muted-foreground">{pillar.description}</p>
-                </CardContent>
-              </Card>
-            ))}
+            {capabilityPillars.map((pillar) => {
+              const Icon = pillar.icon;
+
+              return (
+                <Card key={pillar.title} className="surface-card border-none">
+                  <CardContent className="p-8">
+                    <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/12 text-primary">
+                      <Icon className="h-6 w-6" />
+                    </div>
+                    <h3 className="font-display text-2xl font-semibold">{pillar.title}</h3>
+                    <p className="mt-4 text-sm leading-7 text-muted-foreground">
+                      {pillar.description}
+                    </p>
+                  </CardContent>
+                </Card>
+              );
+            })}
           </div>
 
           <div className="mt-8 grid gap-6 lg:grid-cols-3">
-            {services.slice(0, 3).map((service) => (
-              <Card key={service.title} className="group border-none bg-[linear-gradient(180deg,hsl(var(--card)),hsl(var(--surface-soft)))]">
-                <CardContent className="p-8">
-                  <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-foreground text-background transition-transform duration-300 group-hover:-translate-y-1">
-                    <service.icon className="h-6 w-6" />
-                  </div>
-                  <h3 className="font-display text-2xl font-semibold">{service.title}</h3>
-                  <p className="mt-4 text-sm leading-7 text-muted-foreground">{service.description}</p>
-                  <div className="mt-6 space-y-3">
-                    {service.features?.map((feature) => (
-                      <div key={feature} className="flex items-start gap-3 text-sm text-foreground/84">
-                        <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" />
-                        <span>{feature}</span>
+            {services.slice(0, 3).map((service) => {
+              const Icon = service.icon;
+
+              return (
+                <Card
+                  key={service.title}
+                  className="group border-none bg-[linear-gradient(180deg,hsl(var(--card)),hsl(var(--surface-soft)))]"
+                >
+                  <CardContent className="p-8">
+                    <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-foreground text-background transition-transform duration-300 group-hover:-translate-y-1">
+                      <Icon className="h-6 w-6" />
+                    </div>
+
+                    <h3 className="font-display text-2xl font-semibold">{service.title}</h3>
+                    <p className="mt-4 text-sm leading-7 text-muted-foreground">
+                      {service.description}
+                    </p>
+
+                    {!!service.features?.length && (
+                      <div className="mt-6 space-y-3">
+                        {service.features.map((feature) => (
+                          <div
+                            key={feature}
+                            className="flex items-start gap-3 text-sm text-foreground/84"
+                          >
+                            <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" />
+                            <span>{feature}</span>
+                          </div>
+                        ))}
                       </div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
+                    )}
+                  </CardContent>
+                </Card>
+              );
+            })}
           </div>
 
           <div className="mt-10 flex justify-center">
@@ -137,30 +176,46 @@ const Home = () => {
           <SectionHeading
             eyebrow="Case Studies"
             title="A more editorial way to showcase delivery impact."
-            description="The new layout borrows the reference site’s stronger portfolio storytelling while keeping your existing products and outcomes."
+            description="The new layout borrows the reference site's stronger portfolio storytelling while keeping your existing products and outcomes."
             align="center"
             className="text-white [&_h2]:text-white [&_p]:text-white/72"
           />
 
           <div className="mt-12 grid gap-6 xl:grid-cols-3">
             {caseStudies.map((study) => (
-              <Card key={study.title} className="border-white/10 bg-white/6 text-white backdrop-blur">
+              <Card
+                key={study.title}
+                className="border-white/10 bg-white/6 text-white backdrop-blur"
+              >
                 <CardContent className="p-8">
-                  <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">{study.category}</p>
+                  <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">
+                    {study.category}
+                  </p>
                   <h3 className="mt-4 font-display text-3xl font-semibold">{study.title}</h3>
                   <p className="mt-4 text-sm leading-7 text-white/72">{study.description}</p>
                   <p className="mt-6 rounded-[1.25rem] border border-white/10 bg-white/6 p-4 text-sm leading-7 text-white/76">
                     {study.impact}
                   </p>
+
                   <div className="mt-6 grid gap-3 sm:grid-cols-3 xl:grid-cols-1">
                     {study.metrics.map((metric) => (
-                      <div key={metric.label} className="rounded-[1.25rem] border border-white/10 bg-black/10 p-4">
+                      <div
+                        key={metric.label}
+                        className="rounded-[1.25rem] border border-white/10 bg-black/10 p-4"
+                      >
                         <div className="text-2xl font-semibold">{metric.value}</div>
-                        <div className="mt-1 text-xs uppercase tracking-[0.18em] text-white/55">{metric.label}</div>
+                        <div className="mt-1 text-xs uppercase tracking-[0.18em] text-white/55">
+                          {metric.label}
+                        </div>
                       </div>
                     ))}
                   </div>
-                  <Button asChild variant="outline" className="mt-6 border-white/14 bg-white/5 text-white hover:bg-white/10">
+
+                  <Button
+                    asChild
+                    variant="outline"
+                    className="mt-6 border-white/14 bg-white/5 text-white hover:bg-white/10"
+                  >
                     <a href={study.link} target="_blank" rel="noreferrer">
                       Preview project
                       <ExternalLink className="h-4 w-4" />
@@ -179,8 +234,9 @@ const Home = () => {
             <SectionHeading
               eyebrow="Proof and process"
               title="More trust, less noise."
-              description="This mirrors the reference site’s rhythm: evidence first, then a clear explanation of how the team works."
+              description="This mirrors the reference site's rhythm: evidence first, then a clear explanation of how the team works."
             />
+
             <div className="mt-8">
               <MetricGrid items={trustMetrics} compact />
             </div>
@@ -195,7 +251,9 @@ const Home = () => {
                   </div>
                   <div>
                     <h3 className="font-display text-2xl font-semibold">{step.title}</h3>
-                    <p className="mt-3 text-sm leading-7 text-muted-foreground">{step.description}</p>
+                    <p className="mt-3 text-sm leading-7 text-muted-foreground">
+                      {step.description}
+                    </p>
                   </div>
                 </CardContent>
               </Card>
@@ -208,7 +266,7 @@ const Home = () => {
         <div className="mx-auto max-w-7xl">
           <SectionHeading
             eyebrow="Client voices"
-            title="Testimonials now feel like part of the brand system instead of separate widgets."
+            title="Testimonials now feel part of the brand system instead of separate widgets."
             description="Rounded portrait cards and restrained copy blocks make the social proof section feel much more premium."
             align="center"
           />
@@ -230,7 +288,10 @@ const Home = () => {
                       </p>
                     </div>
                   </div>
-                  <p className="mt-6 text-sm leading-7 text-muted-foreground">“{testimonial.feedback}”</p>
+
+                  <p className="mt-6 text-sm leading-7 text-muted-foreground">
+                    &quot;{testimonial.feedback}&quot;
+                  </p>
                 </CardContent>
               </Card>
             ))}
@@ -246,14 +307,21 @@ const Home = () => {
               title="The team section now supports a stronger agency-style identity."
               description="Instead of an isolated carousel treatment, the team is presented as a unified editorial block with clearer role and focus information."
             />
+
             <div className="grid gap-5 md:grid-cols-3">
               {teamMembers.map((member) => (
                 <Card key={member.name} className="overflow-hidden border-none bg-background">
-                  <img src={member.photo} alt={member.name} className="h-56 w-full object-cover" />
+                  <img
+                    src={member.photo}
+                    alt={member.name}
+                    className="h-56 w-full object-cover"
+                  />
                   <CardContent className="p-6">
                     <h3 className="font-display text-xl font-semibold">{member.name}</h3>
                     <p className="mt-1 text-sm font-medium text-primary">{member.role}</p>
-                    <p className="mt-4 text-sm leading-7 text-muted-foreground">{member.focus}</p>
+                    <p className="mt-4 text-sm leading-7 text-muted-foreground">
+                      {member.focus}
+                    </p>
                   </CardContent>
                 </Card>
               ))}
@@ -273,6 +341,4 @@ const Home = () => {
       />
     </div>
   );
-};
-
-export default Home;
+}
