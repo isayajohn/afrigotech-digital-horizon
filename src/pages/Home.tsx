@@ -24,6 +24,7 @@ const Home = () => {
   return (
     <div className="min-h-screen">
       <PageHero
+        className="[&_.page-hero-eyebrow]:border-border/70 [&_.page-hero-eyebrow]:bg-background/90 [&_.page-hero-eyebrow]:text-foreground/72 [&_.page-hero-title]:text-foreground [&_.page-hero-description]:text-foreground/82"
         eyebrow="Digital Systems With Direction"
         title="We design and build digital products that help schools and organisations move with confidence."
         description="Inspired by strong agency-style storytelling, this new Afrigotech direction pairs bolder presentation with the practical delivery focus your clients already trust."
@@ -45,7 +46,7 @@ const Home = () => {
 
       <section className="px-4 py-12 md:px-6 md:py-16">
         <div className="mx-auto max-w-7xl">
-          <MetricGrid items={homeMetrics} />
+          <MetricGrid items={homeMetrics} animated />
         </div>
       </section>
 
@@ -61,9 +62,13 @@ const Home = () => {
               {partnerLogos.map((partner) => (
                 <div
                   key={partner.name}
-                  className="flex h-24 items-center justify-center rounded-[1.5rem] border border-border/60 bg-background px-5"
+                  className="flex h-24 items-center justify-center rounded-[1.5rem] border border-border/70 bg-white px-5 shadow-soft"
                 >
-                  <img src={partner.logo} alt={partner.name} className="max-h-10 w-auto object-contain grayscale" />
+                  <img
+                    src={partner.logo}
+                    alt={partner.name}
+                    className="max-h-10 w-auto object-contain"
+                  />
                 </div>
               ))}
             </div>

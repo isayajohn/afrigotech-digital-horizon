@@ -13,14 +13,15 @@ const Career = () => {
   return (
     <div className="min-h-screen">
       <PageHero
+        className="[&_.page-hero-eyebrow]:border-border/70 [&_.page-hero-eyebrow]:bg-background/90 [&_.page-hero-eyebrow]:text-foreground/72 [&_.page-hero-title]:text-foreground [&_.page-hero-description]:text-foreground/82"
         eyebrow="Careers"
         title="A hiring page that now matches the rest of the brand instead of feeling like a separate template."
         description="The goal here is consistency: strong hero, stronger roles list, and a CTA system that keeps momentum through the entire site."
         aside={
-          <Card className="border-white/10 bg-white/6 text-white">
+          <Card className="border-border/70 bg-background/95 text-foreground shadow-soft">
             <CardContent className="p-7">
               <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Why join Afrigotech</p>
-              <p className="mt-4 text-base leading-7 text-white/76">
+              <p className="mt-4 text-base leading-7 text-foreground/86">
                 Work on useful digital products, learn in a collaborative environment, and help build technology that
                 supports meaningful change.
               </p>

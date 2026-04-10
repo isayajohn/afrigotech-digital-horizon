@@ -17,14 +17,16 @@ const PageHero = ({ eyebrow, title, description, aside, className }: PageHeroPro
       <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[minmax(0,1.2fr)_minmax(320px,0.8fr)] lg:items-end">
         <div className="relative z-10">
           {eyebrow ? (
-            <p className="mb-5 inline-flex items-center rounded-full border border-white/18 bg-white/10 px-4 py-1 text-xs font-semibold uppercase tracking-[0.28em] text-white/86">
+            <p className="page-hero-eyebrow mb-5 inline-flex items-center rounded-full border border-white/18 bg-white/10 px-4 py-1 text-xs font-semibold uppercase tracking-[0.28em] text-white/86">
               {eyebrow}
             </p>
           ) : null}
-          <h1 className="max-w-4xl font-display text-4xl font-semibold leading-[1.02] text-white md:text-6xl lg:text-7xl">
+          <h1 className="page-hero-title max-w-4xl font-display text-4xl font-semibold leading-[1.02] text-white md:text-6xl lg:text-7xl">
             {title}
           </h1>
-          <p className="mt-6 max-w-2xl text-base leading-7 text-white/86 md:text-lg">{description}</p>
+          <p className="page-hero-description mt-6 max-w-2xl text-base leading-7 text-white/86 md:text-lg">
+            {description}
+          </p>
         </div>
 
         <div className="relative z-10">{aside}</div>

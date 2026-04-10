@@ -24,16 +24,16 @@ const CTASection = ({
 }: CTASectionProps) => {
   return (
     <section className="px-4 py-12 md:px-6 md:py-20">
-      <div className="mx-auto max-w-7xl rounded-[2rem] border border-white/12 bg-[linear-gradient(135deg,hsl(var(--surface-strong)),hsl(214_28%_14%))] p-8 shadow-soft md:p-12">
+      <div className="mx-auto max-w-7xl rounded-[2rem] border border-white/18 bg-[linear-gradient(135deg,hsl(214_39%_11%),hsl(214_32%_15%),hsl(164_46%_18%))] p-8 shadow-soft md:p-12">
         <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end">
-          <div>
+          <div className="text-white">
             {eyebrow ? (
-              <p className="mb-4 inline-flex items-center rounded-full border border-white/16 bg-white/8 px-4 py-1 text-xs font-semibold uppercase tracking-[0.28em] text-white/86">
+              <p className="mb-4 inline-flex items-center rounded-full border border-white/24 bg-white/12 px-4 py-1 text-xs font-semibold uppercase tracking-[0.28em] text-white">
                 {eyebrow}
               </p>
             ) : null}
             <h2 className="max-w-2xl font-display text-3xl font-semibold text-white md:text-5xl">{title}</h2>
-            <p className="mt-5 max-w-2xl text-base leading-7 text-white/84 md:text-lg">{description}</p>
+            <p className="mt-5 max-w-2xl text-base leading-7 text-white md:text-lg">{description}</p>
           </div>
 
           <div className="flex flex-col gap-3 sm:flex-row lg:flex-col xl:flex-row">
@@ -44,7 +44,7 @@ const CTASection = ({
               </Link>
             </Button>
             {secondaryLabel && secondaryTo ? (
-              <Button asChild size="lg" variant="outline" className="min-w-[190px] border-white/18 bg-white/5 text-white hover:bg-white/10">
+              <Button asChild size="lg" variant="outline" className="min-w-[190px] border-white/28 bg-white/10 text-white hover:bg-white/16">
                 <Link to={secondaryTo}>{secondaryLabel}</Link>
               </Button>
             ) : null}

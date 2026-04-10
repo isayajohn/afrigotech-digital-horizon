@@ -9,6 +9,7 @@ const About = () => {
   return (
     <div className="min-h-screen">
       <PageHero
+        className="[&_.page-hero-eyebrow]:border-border/70 [&_.page-hero-eyebrow]:bg-background/90 [&_.page-hero-eyebrow]:text-foreground/72 [&_.page-hero-title]:text-foreground [&_.page-hero-description]:text-foreground/82"
         eyebrow="About Afrigotech"
         title="A digital team focused on useful systems, trusted relationships, and measurable progress."
         description="The redesign keeps your story intact while presenting it with stronger pacing, better hierarchy, and a more confident agency feel."

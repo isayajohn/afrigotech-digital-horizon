@@ -12,6 +12,7 @@ const Portfolio = () => {
   return (
     <div className="min-h-screen">
       <PageHero
+        className="[&_.page-hero-eyebrow]:border-border/70 [&_.page-hero-eyebrow]:bg-background/90 [&_.page-hero-eyebrow]:text-foreground/72 [&_.page-hero-title]:text-foreground [&_.page-hero-description]:text-foreground/82"
         eyebrow="Portfolio"
         title="Project storytelling that feels closer to a modern digital agency case-study flow."
         description="This refactor gives Afrigotech’s work more room to breathe with stronger narrative framing, clearer metrics, and a more polished portfolio rhythm."

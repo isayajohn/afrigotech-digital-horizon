@@ -32,7 +32,7 @@ import neemaLogo from "@/assets/partners/neema-logo.png";
 import azamPesaLogo from "@/assets/partners/azam-pesa-logo.png";
 import zenoPayLogo from "@/assets/partners/zeno-pay-logo.svg";
 import nextSmsLogo from "@/assets/partners/next-sms-logo.png";
-import isayaPhoto from "@/assets/team/isaya-kapama.jpg";
+import isayaPhoto from "@/assets/team/isaya-kapama.png";
 import benjaminPhoto from "@/assets/team/benjamin-athanas.jpg";
 import mosesPhoto from "@/assets/team/moses-nyatega.jpg";
 

@@ -3,6 +3,8 @@ import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import DemoRequestDialog from "@/components/DemoRequestDialog";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { navLinks } from "@/content/site";
 import logoBlue from "@/assets/afrigotech-logo.png";
 
@@ -56,20 +58,28 @@ const Navbar = () => {
             ))}
           </nav>
 
-          <div className="hidden lg:block">
-            <Button asChild className="button-glow">
-              <Link to="/demo">Book a Demo</Link>
-            </Button>
-          </div>
+          <div className="flex items-center gap-2">
+            <div className="hidden lg:block">
+              <DemoRequestDialog
+                trigger={
+                  <Button className="button-glow">
+                    Book a Demo
+                  </Button>
+                }
+              />
+            </div>
 
-          <button
-            type="button"
-            onClick={() => setIsMobileMenuOpen((open) => !open)}
-            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-border bg-background text-foreground shadow-soft lg:hidden"
-            aria-label="Toggle menu"
-          >
-            {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </button>
+            <ThemeToggle />
+
+            <button
+              type="button"
+              onClick={() => setIsMobileMenuOpen((open) => !open)}
+              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-border bg-background text-foreground shadow-soft lg:hidden"
+              aria-label="Toggle menu"
+            >
+              {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
+          </div>
         </div>
 
         {isMobileMenuOpen ? (
@@ -86,9 +96,13 @@ const Navbar = () => {
                   {link.label}
                 </Link>
               ))}
-              <Button asChild className="mt-2">
-                <Link to="/demo">Book a Demo</Link>
-              </Button>
+              <DemoRequestDialog
+                trigger={
+                  <Button className="mt-2" onClick={() => setIsMobileMenuOpen(false)}>
+                    Book a Demo
+                  </Button>
+                }
+              />
             </div>
           </div>
         ) : null}
